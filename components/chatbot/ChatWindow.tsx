@@ -31,7 +31,7 @@ export default function ChatWindow() {
 
 
     return (
-        <div className="flex h-[700px] w-[430px] flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-2xl">
+        <div className="fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-hidden bg-background sm:relative sm:h-[700px] sm:w-[430px] sm:rounded-3xl sm:border sm:shadow-2xl">
 
             <ChatHeader
                 onClose={() => { }}
