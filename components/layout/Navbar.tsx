@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import MobileMenu from "./MobileMenu";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import ColorSwitcher from "@/components/providers/ColorSwitcher";
 import {
@@ -167,7 +168,7 @@ export default function Navbar({
 
       {/* Mobile Menu */}
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, y: -15 }}
@@ -220,7 +221,17 @@ export default function Navbar({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
+
+      <MobileMenu
+        isOpen={open}
+        active={active}
+        onClose={() => setOpen(false)}
+        onNavigate={(href, name) => {
+          scrollToSection(href, name);
+        }}
+        onOpenChat={onOpenChat}
+      />
     </header>
   );
 }

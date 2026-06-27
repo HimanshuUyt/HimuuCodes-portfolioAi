@@ -57,7 +57,11 @@ const accentColors = [
   },
 ] as const;
 
-export default function ColorSwitcher() {
+interface ColorSwitcherProps {
+  onSelect?: () => void;
+}
+
+export default function ColorSwitcher({onSelect,}: ColorSwitcherProps) {
   const { accent, setAccent } = useAccent();
 
   const [open, setOpen] = useState(false);
@@ -113,6 +117,7 @@ export default function ColorSwitcher() {
                   onClick={() => {
                     setAccent(color.id);
                     setOpen(false);
+                    onSelect?.();
                   }}
                   title={color.name}
                   className={`relative h-12 w-12 rounded-full transition hover:scale-110 ${accent === color.id

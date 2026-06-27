@@ -3,12 +3,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, MessageCircle, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import ColorSwitcher from "@/components/providers/ColorSwitcher";
 
 interface MobileMenuProps {
   isOpen: boolean;
   active: string;
   onClose: () => void;
   onNavigate: (href: string, name: string) => void;
+  onOpenChat: () => void;
 }
 
 const navItems = [
@@ -25,6 +27,7 @@ export default function MobileMenu({
   active,
   onClose,
   onNavigate,
+  onOpenChat,
 }: MobileMenuProps) {
   return (
     <AnimatePresence>
@@ -78,18 +81,15 @@ export default function MobileMenu({
               <div className="flex items-center gap-2">
                 <ThemeToggle />
 
+                <ColorSwitcher onSelect={onClose} />
+
                 <button
                   onClick={onClose}
-                  className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
+                  className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]"
+                >
                   <X size={22} />
                 </button>
               </div>
-
-              <button
-                onClick={onClose}
-                className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
-                <X size={22} />
-              </button>
             </div>
 
             {/* Navigation */}
@@ -115,7 +115,12 @@ export default function MobileMenu({
 
             <div className="border-t border-[var(--border)] p-6">
               <div className="space-y-3">
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] py-3 font-medium text-[var(--primary)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
+                <button
+                  onClick={() => {
+                    onClose();
+                    onOpenChat();
+                  }}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] py-3 font-medium text-[var(--primary)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
                   <MessageCircle size={18} />
                   AI Assistant
                 </button>
