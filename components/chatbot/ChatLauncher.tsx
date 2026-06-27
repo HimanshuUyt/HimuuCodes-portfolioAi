@@ -10,7 +10,7 @@ export default function ChatLauncher({
   onToggle,
 }: ChatLauncherProps) {
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div className="fixed bottom-4 right-4 z-[100] md:bottom-6 md:right-6">
       <AnimatePresence mode="wait">
         {isOpen ? (
           <motion.button
@@ -29,7 +29,7 @@ export default function ChatLauncher({
             transition={{
               duration: 0.25,
             }}
-            className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-red-600 text-white shadow-2xl shadow-red-500/30"
+            className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white shadow-2xl shadow-cyan-500/30 md:h-16 md:w-16"
             aria-label="Close AI Chat"
           >
             <X className="h-7 w-7 transition-transform duration-300 group-hover:rotate-90" />
@@ -61,7 +61,7 @@ export default function ChatLauncher({
             <span className="absolute inset-0 rounded-full bg-cyan-500/20 blur-xl" />
 
             {/* Icon */}
-            <Bot className="relative h-8 w-8 transition-transform duration-300 group-hover:scale-110" />
+            <Bot className="relative h-7 w-7 transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8" />
 
             {/* Notification Badge */}
             <motion.div
@@ -70,8 +70,7 @@ export default function ChatLauncher({
               transition={{
                 delay: 0.4,
               }}
-              className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-lg"
-            >
+              className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white shadow-lg md:h-6 md:w-6 md:text-[10px]">
               AI
             </motion.div>
 

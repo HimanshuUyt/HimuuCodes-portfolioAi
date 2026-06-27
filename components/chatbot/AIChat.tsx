@@ -38,8 +38,8 @@ export default function AIChat({
 
   const positionClass =
     position === "bottom-left"
-      ? "left-6 bottom-6"
-      : "right-6 bottom-6";
+      ? "md:left-6 md:bottom-6"
+      : "md:right-6 md:bottom-6";
 
   return (
     <AnimatePresence>
@@ -77,15 +77,14 @@ export default function AIChat({
             transition={{
               duration: 0.25,
             }}
-            className={`fixed ${positionClass} z-[999]`}
+            className={`fixed inset-0 z-[999] md:inset-auto ${positionClass}`}
           >
-            <div className="relative">
+            <div className="relative h-full w-full md:h-auto md:w-auto">
               {/* Close Button */}
 
               <button
                 onClick={onClose}
-                className="absolute -right-3 -top-3 z-50 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-white shadow-xl transition hover:rotate-90 hover:bg-red-500"
-              >
+                className="absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-white shadow-xl transition hover:rotate-90 hover:bg-red-500 md:-right-3 md:-top-3">
                 <X size={18} />
               </button>
 
