@@ -67,11 +67,22 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-black">
+    <footer className="relative overflow-hidden border-t border-[var(--border)] bg-[var(--background)]">
       {/* Background Glow */}
 
-      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-purple-500/10 blur-[120px]" />
+      <div
+        className="absolute left-0 top-0 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.12)",
+        }}
+      />
+
+      <div
+        className="absolute bottom-0 right-0 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.12)",
+        }}
+      />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -82,23 +93,29 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               className="mb-5 text-3xl font-black"
             >
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
+                }}
+              >
                 Himuu
               </span>{" "}
-              <span className="text-white">Codes</span>
+              <span className="text-[var(--foreground)]">Codes</span>
             </motion.h2>
 
-            <p className="leading-7 text-gray-400">
+            <p className="leading-7 text-[var(--muted)]">
               Building beautiful, scalable and AI-powered web &
               mobile applications with modern technologies.
             </p>
 
-            <div className="mt-6 flex items-center gap-2 text-sm text-gray-400">
+            <div className="mt-6 flex items-center gap-2 text-sm text-[var(--muted)]">
               <MapPin size={16} />
               India
             </div>
 
-            <div className="mt-2 flex items-center gap-2 text-sm text-gray-400">
+            <div className="mt-2 flex items-center gap-2 text-sm text-[var(--muted)]">
               <Mail size={16} />
               your@email.com
             </div>
@@ -107,7 +124,7 @@ export default function Footer() {
           {/* Navigation */}
 
           <div>
-            <h3 className="mb-5 text-lg font-semibold text-white">
+            <h3 className="mb-5 text-lg font-semibold text-[var(--foreground)]">
               Quick Links
             </h3>
 
@@ -116,8 +133,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <button
                     onClick={() => scrollToSection(item.href)}
-                    className="text-gray-400 transition hover:text-cyan-400"
-                  >
+                    className="text-[var(--muted)] transition-all duration-300 hover:text-[var(--primary)]">
                     {item.name}
                   </button>
                 </li>
@@ -132,7 +148,7 @@ export default function Footer() {
               Services
             </h3>
 
-            <ul className="space-y-3 text-gray-400">
+            <ul className="space-y-3 text-[var(--muted)]">
               <li>Next.js Development</li>
               <li>Flutter Apps</li>
               <li>MERN Stack</li>
@@ -164,21 +180,20 @@ export default function Footer() {
                       scale: 1.1,
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="rounded-xl border border-white/10 bg-white/5 p-4 text-xl text-white transition hover:border-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400"
-                  >
+                    className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4 text-xl text-[var(--foreground)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg">
                     <Icon />
                   </motion.a>
                 );
               })}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-5">
-              <div className="mb-2 flex items-center gap-2 text-cyan-400">
+            <div className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 backdrop-blur-xl">
+              <div className="mb-2 flex items-center gap-2 text-[var(--primary)]">
                 <Sparkles size={18} />
                 Available for Freelance
               </div>
 
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-[var(--muted)]">
                 Let's build something amazing together.
               </p>
             </div>
@@ -187,29 +202,34 @@ export default function Footer() {
 
         {/* Divider */}
 
-        <div className="my-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div
+          className="my-10 h-px"
+          style={{
+            background:
+              "linear-gradient(to right,transparent,var(--border),transparent)",
+          }}
+        />
 
         {/* Bottom */}
 
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <p className="flex items-center gap-2 text-center text-sm text-gray-400">
+          <p className="flex items-center gap-2 text-center text-sm text-[var(--muted)]">
             © {new Date().getFullYear()} Himuu Codes. Made with
             <Heart
               size={16}
-              className="fill-red-500 text-red-500"
+              className="fill-rose-500 text-rose-500"
             />
             using Next.js & Tailwind CSS.
           </p>
 
           <button
             onClick={scrollTop}
-            className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white transition hover:border-cyan-500 hover:bg-cyan-500/10"
-          >
+            className="group flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-5 py-3 text-sm text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg">
             Back to Top
 
             <ArrowUp
               size={18}
-              className="transition group-hover:-translate-y-1"
+              className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:text-[var(--primary)]"
             />
           </button>
         </div>

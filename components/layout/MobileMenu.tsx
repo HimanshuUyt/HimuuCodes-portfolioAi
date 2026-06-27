@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, MessageCircle, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -37,7 +38,7 @@ export default function MobileMenu({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-md lg:hidden"
           />
 
           {/* Drawer */}
@@ -51,29 +52,42 @@ export default function MobileMenu({
               stiffness: 280,
               damping: 28,
             }}
-            className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col border-l border-white/10 bg-[#050816] shadow-2xl lg:hidden"
-          >
+            className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col border-l border-[var(--border)] bg-[var(--background)] shadow-2xl lg:hidden">
             {/* Header */}
 
-            <div className="flex items-center justify-between border-b border-white/10 p-6">
+            <div className="flex items-center justify-between border-b border-[var(--border)] p-6">
               <div>
                 <h2 className="text-2xl font-black">
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
+                    }}
+                  >
                     Himuu
                   </span>
 
-                  <span className="text-white"> Codes</span>
+                  <span className="text-[var(--foreground)]"> Codes</span>
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-400">
+                <p className="mt-1 text-sm text-[var(--muted)]">
                   Full Stack Developer
                 </p>
               </div>
 
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+
+                <button
+                  onClick={onClose}
+                  className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
+                  <X size={22} />
+                </button>
+              </div>
+
               <button
                 onClick={onClose}
-                className="rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-white/10"
-              >
+                className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
                 <X size={22} />
               </button>
             </div>
@@ -86,11 +100,10 @@ export default function MobileMenu({
                   <button
                     key={item.name}
                     onClick={() => onNavigate(item.href, item.name)}
-                    className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-lg font-medium transition ${
-                      active === item.name
-                        ? "bg-cyan-500/15 text-cyan-400"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white"
-                    }`}
+                    className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-lg font-medium transition ${active === item.name
+                      ? "bg-[rgba(var(--primary-rgb),0.12)] text-[var(--primary)]"
+                      : "text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
+                      }`}
                   >
                     {item.name}
                   </button>
@@ -100,9 +113,9 @@ export default function MobileMenu({
 
             {/* Bottom Actions */}
 
-            <div className="border-t border-white/10 p-6">
+            <div className="border-t border-[var(--border)] p-6">
               <div className="space-y-3">
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 py-3 font-medium text-cyan-300 transition hover:bg-cyan-500/20">
+                <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] py-3 font-medium text-[var(--primary)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
                   <MessageCircle size={18} />
                   AI Assistant
                 </button>
@@ -110,14 +123,18 @@ export default function MobileMenu({
                 <a
                   href="/resume.pdf"
                   download
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 font-semibold text-white transition hover:scale-[1.02]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl py-3 font-semibold text-white transition hover:scale-[1.02]"
+                  style={{
+                    background:
+                      "linear-gradient(135deg,var(--primary),var(--secondary))",
+                  }}
                 >
                   <Download size={18} />
                   Download Resume
                 </a>
               </div>
 
-              <p className="mt-6 text-center text-xs text-gray-500">
+              <p className="mt-6 text-center text-xs text-[var(--muted)]">
                 © {new Date().getFullYear()} Himuu Codes
               </p>
             </div>

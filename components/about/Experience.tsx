@@ -13,28 +13,46 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24"
+      className="hero-bg relative overflow-hidden py-24"
     >
+      <div
+        className="absolute left-0 top-20 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.12)",
+        }}
+      />
+
+      <div
+        className="absolute bottom-0 right-0 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.12)",
+        }}
+      />
+
       <div className="container-custom px-6">
         {/* Section Header */}
 
         <motion.div
+          whileHover={{
+            y: -6,
+            scale: 1.01,
+          }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
+          <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--primary)] backdrop-blur-xl">
             Experience
           </span>
 
-          <h2 className="mt-6 text-4xl font-black text-white md:text-5xl">
+          <h2 className="mt-6 text-4xl font-black text-[var(--foreground)] md:text-5xl">
             My Professional
             <span className="gradient-text"> Journey</span>
           </h2>
 
-          <p className="mt-6 text-lg text-gray-400">
+          <p className="mt-6 text-lg leading-8 text-[var(--muted)]">
             My experience building modern applications,
             solving real-world problems, and continuously
             learning new technologies.
@@ -46,7 +64,11 @@ export default function Experience() {
         <div className="relative mx-auto max-w-5xl">
           {/* Vertical Line */}
 
-          <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 md:block" />
+          <div className="absolute left-5 top-0 hidden h-full w-px md:block"
+            style={{
+              background:
+                "linear-gradient(to bottom,var(--primary),var(--secondary),var(--accent))",
+            }} />
 
           <div className="space-y-12">
             {experiences.map((experience, index) => (
@@ -68,7 +90,11 @@ export default function Experience() {
               >
                 {/* Timeline Icon */}
 
-                <div className="relative z-10 hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg md:flex">
+                <div className="relative z-10 hidden h-10 w-10 shrink-0 items-center justify-center rounded-full shadow-lg md:flex"
+                  style={{
+                    background:
+                      "linear-gradient(135deg,var(--primary),var(--secondary))",
+                  }}>
                   <Briefcase
                     size={18}
                     className="text-white"
@@ -77,19 +103,19 @@ export default function Experience() {
 
                 {/* Card */}
 
-                <div className="glass w-full rounded-3xl p-8">
+                <div className="card glass w-full rounded-3xl p-8">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-2xl font-bold text-[var(--foreground)]">
                         {experience.role}
                       </h3>
 
-                      <p className="mt-2 text-lg text-cyan-400">
+                      <p className="mt-2 text-lg text-[var(--primary)]">
                         {experience.company}
                       </p>
                     </div>
 
-                    <div className="space-y-2 text-sm text-gray-400">
+                    <div className="space-y-2 text-sm text-[var(--muted)]">
                       <div className="flex items-center gap-2">
                         <CalendarDays size={16} />
                         {experience.period}
@@ -102,7 +128,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <p className="mt-6 leading-8 text-gray-400">
+                  <p className="mt-6 leading-8 text-[var(--muted)]">
                     {experience.description}
                   </p>
 
@@ -112,8 +138,7 @@ export default function Experience() {
                     {experience.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300"
-                      >
+                        className="rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--primary)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
                         {tech}
                       </span>
                     ))}
@@ -130,10 +155,10 @@ export default function Experience() {
                         >
                           <CheckCircle2
                             size={20}
-                            className="mt-1 shrink-0 text-cyan-400"
+                            className="mt-1 shrink-0 text-[var(--primary)]"
                           />
 
-                          <p className="text-gray-300">
+                          <p className="text-[var(--foreground)]">
                             {achievement}
                           </p>
                         </div>

@@ -29,6 +29,10 @@ export default function FeaturedProject({
 }: FeaturedProjectProps) {
   return (
     <motion.section
+      whileHover={{
+        y: -6,
+        scale: 1.01,
+      }}
       initial={{
         opacity: 0,
         y: 40,
@@ -41,13 +45,23 @@ export default function FeaturedProject({
       transition={{
         duration: 0.6,
       }}
-      className="relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-white/5 backdrop-blur-xl"
+      className="card glass relative overflow-hidden rounded-3xl transition-all duration-300 hover:border-[var(--primary)]"
     >
       {/* Background Glow */}
 
-      <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div
+        className="absolute -left-20 -top-20 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.12)",
+        }}
+      />
 
-      <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-purple-500/10 blur-[120px]" />
+      <div
+        className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.12)",
+        }}
+      />
 
       <div className="relative grid items-center gap-10 lg:grid-cols-2">
         {/* Image */}
@@ -61,11 +75,19 @@ export default function FeaturedProject({
             className="h-full min-h-[380px] w-full object-cover transition duration-700 group-hover:scale-105"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(0,0,0,.45), transparent)",
+            }} />
 
           {/* Badge */}
 
-          <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg">
+          <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white shadow-lg"
+            style={{
+              background:
+                "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+            }}>
             <Sparkles size={16} />
             Featured Project
           </div>
@@ -74,15 +96,18 @@ export default function FeaturedProject({
         {/* Content */}
 
         <div className="p-8 lg:p-10">
-          <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
+          <span className="text-sm font-semibold uppercase tracking-widest"
+            style={{
+              color: "var(--primary)",
+            }}>
             Premium Project
           </span>
 
-          <h2 className="mt-4 text-4xl font-black text-white">
+          <h2 className="mt-4 text-4xl font-black text-[var(--foreground)]">
             {title}
           </h2>
 
-          <p className="mt-6 leading-8 text-gray-400">
+          <p className="mt-6 leading-8 text-[var(--muted)]">
             {description}
           </p>
 
@@ -92,7 +117,10 @@ export default function FeaturedProject({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300"
+                className="rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium backdrop-blur-xl transition-all duration-300 hover:border-[var(--primary)]"
+                style={{
+                  color: "var(--primary)",
+                }}
               >
                 {tag}
               </span>
@@ -105,7 +133,10 @@ export default function FeaturedProject({
             <Link
               href={github}
               target="_blank"
-              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+              className="glass inline-flex items-center gap-3 rounded-xl px-6 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 hover:border-[var(--primary)]"
+              style={{
+                color: "var(--foreground)",
+              }}
             >
               <FaGithub className="text-xl" />
               Source Code
@@ -114,7 +145,11 @@ export default function FeaturedProject({
             <Link
               href={live}
               target="_blank"
-              className="inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition hover:scale-105"
+              className="inline-flex items-center gap-3 rounded-xl px-6 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+              style={{
+                background:
+                  "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+              }}
             >
               <ExternalLink size={20} />
               Live Demo
@@ -123,7 +158,10 @@ export default function FeaturedProject({
 
           {/* Bottom */}
 
-          <div className="mt-10 flex items-center gap-2 text-cyan-400">
+          <div className="mt-10 flex items-center gap-2"
+            style={{
+              color: "var(--primary)",
+            }}>
             <ArrowUpRight size={18} />
             <span className="font-medium">
               Modern • Responsive • High Performance

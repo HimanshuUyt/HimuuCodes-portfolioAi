@@ -50,7 +50,10 @@ export default function ProjectModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 backdrop-blur-md"
+            style={{
+              background: "rgba(0,0,0,.65)",
+            }}
           />
 
           {/* Modal */}
@@ -72,15 +75,24 @@ export default function ProjectModal({
               y: 40,
             }}
             transition={{
-              duration: 0.3,
+              type: "spring",
+              stiffness: 280,
+              damping: 26,
             }}
-            className="fixed left-1/2 top-1/2 z-[60] max-h-[90vh] w-[95%] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-2xl"
+            className="glass fixed left-1/2 top-1/2 z-[60] max-h-[90vh] w-[95%] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl shadow-2xl transition-all duration-300"
+            style={{
+              background: "var(--background)",
+              border: "1px solid var(--border)",
+            }}
           >
             {/* Close */}
 
             <button
               onClick={onClose}
-              className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-red-500"
+              className="glass absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
+              style={{
+                color: "var(--foreground)",
+              }}
             >
               <X size={22} />
             </button>
@@ -97,10 +109,14 @@ export default function ProjectModal({
                   className="h-[320px] w-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                <div className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top,var(--background),rgba(0,0,0,.25),transparent)",
+                  }} />
 
                 <div className="absolute bottom-8 left-8">
-                  <h2 className="text-4xl font-black text-white">
+                  <h2 className="text-4xl font-black text-[var(--foreground)]">
                     {project.title}
                   </h2>
 
@@ -108,7 +124,12 @@ export default function ProjectModal({
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
+                        className="rounded-full px-3 py-1 text-sm border"
+                        style={{
+                          background: "rgba(var(--primary-rgb),0.08)",
+                          borderColor: "var(--border)",
+                          color: "var(--primary)",
+                        }}
                       >
                         {tag}
                       </span>
@@ -123,11 +144,11 @@ export default function ProjectModal({
                 {/* Description */}
 
                 <div>
-                  <h3 className="mb-4 text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-[var(--foreground)]">
                     Project Overview
                   </h3>
 
-                  <p className="leading-8 text-gray-400">
+                  <p className="leading-8 text-[var(--muted)]">
                     {project.longDescription ??
                       project.description}
                   </p>
@@ -137,7 +158,7 @@ export default function ProjectModal({
 
                 <div className="grid gap-6 md:grid-cols-2">
                   {project.duration && (
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <div className="glass rounded-2xl p-6 transition-all duration-300">
                       <div className="mb-3 flex items-center gap-3 text-cyan-400">
                         <Calendar size={20} />
                         <span className="font-semibold">
@@ -153,14 +174,17 @@ export default function ProjectModal({
 
                   {project.role && (
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                      <div className="mb-3 flex items-center gap-3 text-cyan-400">
+                      <div className="mb-3 flex items-center gap-3"
+                        style={{
+                          color: "var(--primary)",
+                        }}>
                         <Code2 size={20} />
                         <span className="font-semibold">
                           Role
                         </span>
                       </div>
 
-                      <p className="text-gray-300">
+                      <p className="text-[var(--foreground)]">
                         {project.role}
                       </p>
                     </div>
@@ -180,14 +204,17 @@ export default function ProjectModal({
                         {project.features.map((feature) => (
                           <div
                             key={feature}
-                            className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
+                            className="glass flex items-start gap-3 rounded-xl p-4 transition-all duration-300"
                           >
                             <CheckCircle2
                               size={20}
-                              className="mt-0.5 shrink-0 text-cyan-400"
+                              className="mt-0.5 shrink-0"
+                              style={{
+                                color: "var(--primary)",
+                              }}
                             />
 
-                            <span className="text-gray-300">
+                            <span className="text-[var(--foreground)]">
                               {feature}
                             </span>
                           </div>
@@ -209,7 +236,7 @@ export default function ProjectModal({
                         {project.challenges.map((challenge) => (
                           <div
                             key={challenge}
-                            className="rounded-xl border border-white/10 bg-white/5 p-5 text-gray-300"
+                            className="glass rounded-xl p-5 text-[var(--foreground)]"
                           >
                             {challenge}
                           </div>
@@ -220,12 +247,18 @@ export default function ProjectModal({
 
                 {/* Buttons */}
 
-                <div className="flex flex-wrap gap-4 border-t border-white/10 pt-8">
+                <div className="flex flex-wrap gap-4 pt-8"
+                  style={{
+                    borderTop: "1px solid var(--border)",
+                  }}>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+                    className="glass inline-flex items-center gap-3 rounded-xl px-6 py-4 font-semibold transition-all duration-300 hover:-translate-y-1"
+                    style={{
+                      color: "var(--foreground)",
+                    }}
                   >
                     <FaGithub className="text-xl" />
                     View Source Code
@@ -235,7 +268,11 @@ export default function ProjectModal({
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition hover:scale-105"
+                    className="inline-flex items-center gap-3 rounded-xl px-6 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+                    style={{
+                      background:
+                        "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+                    }}
                   >
                     <ExternalLink size={20} />
                     Live Demo

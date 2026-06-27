@@ -107,10 +107,17 @@ export default function TechStack() {
   const items = [...technologies, ...technologies];
 
   return (
-    <section className="relative overflow-hidden py-20">
+    <section
+      className="section-bg relative overflow-hidden py-20 transition-colors duration-300"
+    >
       {/* Header */}
 
       <motion.div
+        whileHover={{
+          scale: 1.08,
+          y: -6,
+          borderColor: "var(--primary)",
+        }}
         initial={{
           opacity: 0,
           y: 20,
@@ -122,16 +129,27 @@ export default function TechStack() {
         viewport={{ once: true }}
         className="mb-12 text-center"
       >
-        <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
+        <span className="rounded-full border px-4 py-2 text-sm font-medium"
+          style={{
+            borderColor: "rgba(var(--primary-rgb),0.25)",
+            background: "rgba(var(--primary-rgb),0.08)",
+            color: "var(--primary)",
+          }}>
           Tech Stack
         </span>
 
-        <h2 className="mt-6 text-4xl font-black text-white md:text-5xl">
+        <h2 className="mt-6 text-4xl font-black md:text-5xl"
+          style={{
+            color: "var(--foreground)",
+          }}>
           Tools &
           <span className="gradient-text"> Technologies</span>
         </h2>
 
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8"
+          style={{
+            color: "var(--muted)",
+          }}>
           These are the technologies I use to build modern,
           scalable, high-performance web, mobile, and AI
           applications.
@@ -140,11 +158,19 @@ export default function TechStack() {
 
       {/* Left Fade */}
 
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[#030712] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32"
+        style={{
+          background:
+            "linear-gradient(to right,var(--background),transparent)",
+        }} />
 
       {/* Right Fade */}
 
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[#030712] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32"
+        style={{
+          background:
+            "linear-gradient(to left,var(--background),transparent)",
+        }} />
 
       {/* Marquee */}
 
@@ -158,7 +184,7 @@ export default function TechStack() {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="flex w-max gap-6"
+          className="flex w-max gap-6 py-2"
         >
           {items.map((tech, index) => {
             const Icon = tech.icon;
@@ -170,7 +196,10 @@ export default function TechStack() {
                   scale: 1.08,
                   y: -6,
                 }}
-                className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-white/10"
+                className="glass group flex items-center gap-4 rounded-2xl px-6 py-4 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  borderColor: "var(--border)",
+                }}
               >
                 <Icon
                   size={32}
@@ -179,7 +208,10 @@ export default function TechStack() {
                   }}
                 />
 
-                <span className="whitespace-nowrap text-lg font-semibold text-white">
+                <span className="whitespace-nowrap text-lg font-semibold"
+                  style={{
+                    color: "var(--foreground)",
+                  }}>
                   {tech.name}
                 </span>
               </motion.div>

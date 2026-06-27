@@ -23,30 +23,44 @@ export default function SkillCategory({
   items,
 }: SkillCategoryProps) {
   return (
-    <section className="py-12">
+    <section className="section-bg py-12 transition-colors duration-300">
       {/* Header */}
 
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 30,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{
-          duration: 0.5,
-        }}
+        transition={{ duration: 0.5 }}
         className="mb-10 text-center"
       >
-        <h3 className="text-3xl font-bold text-white">
+        <h3
+          className="text-3xl font-bold"
+          style={{
+            color: "var(--foreground)",
+          }}
+        >
           {title}
         </h3>
 
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 80 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mt-4 h-1 rounded-full"
+          style={{
+            background:
+              "linear-gradient(90deg,var(--gradient-from),var(--gradient-to))",
+          }}
+        />
+
         {subtitle && (
-          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+          <p
+            className="mx-auto mt-4 max-w-2xl leading-8"
+            style={{
+              color: "var(--muted)",
+            }}
+          >
             {subtitle}
           </p>
         )}
@@ -66,6 +80,6 @@ export default function SkillCategory({
           />
         ))}
       </div>
-    </section>
+    </section >
   );
 }

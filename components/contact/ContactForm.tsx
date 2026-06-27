@@ -62,18 +62,33 @@ export default function ContactForm() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl shadow-2xl"
+      className="glass rounded-3xl p-8 transition-colors duration-300"
+      style={{
+        borderColor: "var(--border)",
+      }}
     >
       <div className="mb-8">
-        <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+        <span className="rounded-full px-4 py-2 text-sm font-semibold"
+          style={{
+            background: "rgba(var(--primary-rgb),0.10)",
+            color: "var(--primary)",
+          }}>
           Contact Form
         </span>
 
-        <h2 className="mt-5 text-3xl font-bold">
+        <h2
+          className="mt-5 text-3xl font-bold"
+          style={{
+            color: "var(--foreground)",
+          }}
+        >
           Let's Build Something Amazing
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3"
+          style={{
+            color: "var(--muted)",
+          }}>
           Have an idea or project? Fill out the form below and I'll reply as
           soon as possible.
         </p>
@@ -83,7 +98,12 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mb-6 flex items-center gap-3 rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-green-500"
+          className="mb-6 flex items-center gap-3 rounded-xl border p-4"
+          style={{
+            borderColor: "rgba(34,197,94,.30)",
+            background: "rgba(34,197,94,.08)",
+            color: "#22c55e",
+          }}
         >
           <CheckCircle2 className="h-5 w-5" />
 
@@ -98,17 +118,37 @@ export default function ContactForm() {
         {/* Name */}
 
         <div>
-          <label className="mb-2 block text-sm font-medium">
+          <label className="mb-2 block text-sm font-medium"
+            style={{
+              color: "var(--foreground)",
+            }}>
             Full Name
           </label>
 
           <div className="relative">
-            <User className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <User className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2"
+              style={{
+                color: "var(--muted)",
+              }} />
 
             <input
               {...register("name")}
               placeholder="John Doe"
-              className="h-14 w-full rounded-xl border border-border bg-background pl-12 pr-4 outline-none transition-all focus:border-primary"
+              className="h-14 w-full rounded-xl border pl-12 pr-4 outline-none transition-all duration-300"
+              style={{
+                background: "var(--card)",
+                color: "var(--foreground)",
+                borderColor: "var(--border)",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "var(--primary)";
+                e.currentTarget.style.boxShadow =
+                  "0 0 0 4px rgba(var(--primary-rgb),0.15)";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             />
           </div>
 
@@ -179,7 +219,21 @@ export default function ContactForm() {
             {...register("message")}
             rows={6}
             placeholder="Tell me about your project..."
-            className="w-full rounded-xl border border-border bg-background p-4 outline-none transition-all focus:border-primary"
+            className="w-full rounded-xl border p-4 outline-none transition-all duration-300"
+            style={{
+              background: "var(--card)",
+              color: "var(--foreground)",
+              borderColor: "var(--border)",
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = "var(--primary)";
+              e.currentTarget.style.boxShadow =
+                "0 0 0 4px rgba(var(--primary-rgb),0.15)";
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
           />
 
           {errors.message && (
@@ -194,7 +248,13 @@ export default function ContactForm() {
           whileTap={{ scale: 0.97 }}
           disabled={isSubmitting}
           type="submit"
-          className="flex h-14 w-full items-center justify-center gap-3 rounded-xl bg-primary font-semibold text-primary-foreground transition-all hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex h-14 w-full items-center justify-center gap-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+          style={{
+            background:
+              "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+            boxShadow:
+              "0 12px 30px rgba(var(--primary-rgb),0.25)",
+          }}
         >
           {isSubmitting ? (
             <>

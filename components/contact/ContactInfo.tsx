@@ -88,15 +88,26 @@ export default function ContactInfo() {
         }}
         viewport={{ once: true }}
       >
-        <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
+        <span className="rounded-full border px-4 py-2 text-sm font-medium transition-colors"
+          style={{
+            borderColor: "rgba(var(--primary-rgb),0.25)",
+            background: "rgba(var(--primary-rgb),0.08)",
+            color: "var(--primary)",
+          }}>
           Contact Information
         </span>
 
-        <h2 className="mt-6 text-4xl font-black text-white">
+        <h2 className="mt-6 text-4xl font-black"
+          style={{
+            color: "var(--foreground)",
+          }}>
           Let's Connect
         </h2>
 
-        <p className="mt-5 leading-8 text-gray-400">
+        <p className="mt-5 leading-8"
+          style={{
+            color: "var(--muted)",
+          }}>
           Have an idea, project, or collaboration in mind?
           Feel free to reach out. I'm always excited to build
           modern web applications, AI solutions, and mobile
@@ -133,10 +144,13 @@ export default function ContactInfo() {
                     ? "_blank"
                     : undefined
                 }
-                className="group flex items-center gap-5 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all hover:border-cyan-500/40"
+                className="glass group flex items-center gap-5 rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  borderColor: "var(--border)",
+                }}
               >
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r ${item.color}`}
+                  className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r ${item.color} shadow-lg`}
                 >
                   <Icon
                     size={28}
@@ -145,11 +159,17 @@ export default function ContactInfo() {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="font-bold text-white">
+                  <h3 className="font-bold"
+                    style={{
+                      color: "var(--foreground)",
+                    }}>
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 text-gray-400 transition group-hover:text-cyan-300">
+                  <p className="mt-1 transition-colors group-hover:text-[var(--primary)]"
+                    style={{
+                      color: "var(--muted)",
+                    }}>
                     {item.value}
                   </p>
                 </div>
@@ -174,11 +194,21 @@ export default function ContactInfo() {
         transition={{
           delay: 0.4,
         }}
-        className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
+        className="glass rounded-3xl p-8 transition-colors"
+        style={{
+          borderColor: "var(--border)",
+        }}
       >
         <div className="mb-6 flex items-center gap-3">
-          <MessageCircle className="text-cyan-400" />
-          <h3 className="text-2xl font-bold text-white">
+          <MessageCircle
+            style={{
+              color: "var(--primary)",
+            }}
+          />
+          <h3 className="text-2xl font-bold"
+            style={{
+              color: "var(--foreground)",
+            }}>
             Follow Me
           </h3>
         </div>
@@ -196,11 +226,17 @@ export default function ContactInfo() {
                 whileHover={{
                   y: -5,
                   scale: 1.08,
+                  boxShadow:
+                    "0 10px 30px rgba(var(--primary-rgb),0.25)",
                 }}
                 whileTap={{
                   scale: 0.95,
                 }}
-                className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-xl text-white transition hover:border-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-400"
+                className="glass flex h-14 w-14 items-center justify-center rounded-2xl text-xl transition-all duration-300 hover:scale-105"
+                style={{
+                  color: "var(--foreground)",
+                  borderColor: "var(--border)",
+                }}
               >
                 <Icon />
               </motion.a>
@@ -224,17 +260,38 @@ export default function ContactInfo() {
         transition={{
           delay: 0.5,
         }}
-        className="rounded-3xl border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 p-8 backdrop-blur-xl"
+        className="glass rounded-3xl p-8"
+        style={{
+          borderColor: "rgba(var(--primary-rgb),0.20)",
+          background: `
+            linear-gradient(
+              135deg,
+              rgba(var(--primary-rgb),0.08),
+              rgba(var(--secondary-rgb),0.06),
+              rgba(var(--accent-rgb),0.08)
+            )
+          `,
+        }}
       >
         <div className="flex items-center gap-3">
-          <Send className="text-cyan-400" />
+          <Send
+            style={{
+              color: "var(--primary)",
+            }}
+          />
 
-          <h3 className="text-2xl font-bold text-white">
+          <h3 className="text-2xl font-bold"
+            style={{
+              color: "var(--foreground)",
+            }}>
             Ready to Start?
           </h3>
         </div>
 
-        <p className="mt-4 leading-8 text-gray-400">
+        <p className="mt-4 leading-8"
+          style={{
+            color: "var(--muted)",
+          }}>
           I'm currently available for freelance work,
           startups, AI projects, Flutter apps, and full-stack
           development.
@@ -242,7 +299,13 @@ export default function ContactInfo() {
 
         <Link
           href="mailto:himuucodes@gmail.com"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-4 font-semibold text-white transition hover:scale-105"
+          className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+          style={{
+            background:
+              "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+            boxShadow:
+              "0 12px 35px rgba(var(--primary-rgb),0.30)",
+          }}
         >
           <Mail size={18} />
           Send an Email

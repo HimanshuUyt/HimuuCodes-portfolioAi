@@ -34,27 +34,42 @@ export default function Loader({
   return (
     <div
       className={clsx(
-        "flex flex-col items-center justify-center gap-4",
-        fullScreen && "fixed inset-0 z-50 bg-[#030712]/80 backdrop-blur-md"
+        "flex flex-col items-center justify-center gap-4 transition-colors duration-500",
+        fullScreen && "fixed inset-0 z-50 backdrop-blur-xl"
       )}
+      style={
+        fullScreen
+          ? {
+              background: "rgba(var(--primary-rgb),0.04)",
+            }
+          : undefined
+      }
     >
       <div className="relative">
-        {/* Glow */}
+        {/* Animated Glow */}
+
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
+            opacity: [0.2, 0.45, 0.2],
           }}
           transition={{
-            duration: 1.5,
+            duration: 1.6,
             repeat: Infinity,
           }}
-          className="absolute inset-0 rounded-full bg-cyan-500 blur-xl"
+          className="absolute inset-0 rounded-full blur-2xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(var(--primary-rgb),0.45), transparent 70%)",
+          }}
         />
 
         {/* Spinner */}
+
         <motion.div
-          animate={{ rotate: 360 }}
+          animate={{
+            rotate: 360,
+          }}
           transition={{
             duration: 1,
             repeat: Infinity,
@@ -62,19 +77,37 @@ export default function Loader({
           }}
           className={clsx(
             current.spinner,
-            "relative rounded-full border-cyan-400 border-t-transparent border-r-blue-500"
+            "relative rounded-full border-transparent"
           )}
+          style={{
+            borderTopColor: "var(--primary)",
+            borderRightColor: "var(--secondary)",
+            borderBottomColor: "rgba(var(--primary-rgb),0.15)",
+            borderLeftColor: "rgba(var(--primary-rgb),0.15)",
+          }}
         />
       </div>
 
       {text && (
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{
+            opacity: 0,
+            y: 5,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.4,
+          }}
           className={clsx(
             current.text,
-            "font-medium tracking-wide text-gray-300"
+            "font-medium tracking-wide transition-colors duration-300"
           )}
+          style={{
+            color: "var(--muted)",
+          }}
         >
           {text}
         </motion.p>

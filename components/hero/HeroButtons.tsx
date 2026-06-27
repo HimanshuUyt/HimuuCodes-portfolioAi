@@ -52,7 +52,7 @@ export default function HeroButtons() {
           scale: 0.96,
         }}
         onClick={scrollToProjects}
-        className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 px-7 py-4 font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all"
+        className="btn-primary group px-7 py-4"
       >
         View Projects
 
@@ -75,8 +75,7 @@ export default function HeroButtons() {
       >
         <Link
           href="/resume.pdf"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:border-cyan-400 hover:bg-cyan-500/10"
-        >
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-4 font-semibold text-[var(--foreground)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg">
           <Download size={18} />
           Download Resume
         </Link>
@@ -93,8 +92,7 @@ export default function HeroButtons() {
           scale: 0.96,
         }}
         onClick={scrollToContact}
-        className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-7 py-4 font-semibold text-cyan-300 transition-all hover:bg-cyan-500/20"
-      >
+        className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-4 font-semibold text-[var(--primary)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)] hover:shadow-lg">
         <Mail size={18} />
         Contact Me
       </motion.button>

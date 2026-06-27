@@ -240,9 +240,27 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-24"
+      className="relative overflow-hidden py-24 transition-colors duration-500"
+      style={{
+        background: "var(--background)",
+        color: "var(--foreground)",
+      }}
     >
-      <div className="container mx-auto px-6">
+      <div
+        className="absolute left-0 top-24 h-80 w-80 rounded-full blur-[140px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.10)",
+        }}
+      />
+
+      <div
+        className="absolute bottom-0 right-0 h-80 w-80 rounded-full blur-[140px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.10)",
+        }}
+      />
+
+      <div className="container-custom relative px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -251,15 +269,35 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <span className="rounded-full border border-primary/20 bg-primary/10 px-4 py-1 text-sm font-semibold text-primary">
+          <span
+            className="rounded-full px-4 py-1 text-sm font-semibold"
+            style={{
+              border: "1px solid rgba(var(--primary-rgb),0.25)",
+              background: "rgba(var(--primary-rgb),0.08)",
+              color: "var(--primary)",
+            }}
+          >
             Portfolio
           </span>
 
-          <h2 className="mt-5 text-4xl font-bold md:text-5xl">
-            Featured Projects
+          <h2
+            className="mt-5 text-4xl font-black md:text-5xl"
+            style={{
+              color: "var(--foreground)",
+            }}
+          >
+            Featured{" "}
+            <span className="gradient-text">
+              Projects
+            </span>
           </h2>
 
-          <p className="mt-5 text-muted-foreground">
+          <p
+            className="mt-5 text-lg leading-8"
+            style={{
+              color: "var(--muted)",
+            }}
+          >
             A collection of modern web, mobile and AI applications
             focused on beautiful UI, performance and real-world
             problem solving.
@@ -268,7 +306,7 @@ export default function Projects() {
 
         {/* Featured */}
         {featuredProject && (
-          <div className="mb-20">
+          <div className="mb-20 transition-all duration-300">
             <div
               onClick={() =>
                 setSelectedProject(featuredProject)
@@ -299,6 +337,11 @@ export default function Projects() {
         <motion.div
           layout
           className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
+          transition={{
+            layout: {
+              duration: 0.4,
+            },
+          }}
         >
           {filteredProjects
             .filter((p) => !p.featured)
@@ -315,7 +358,12 @@ export default function Projects() {
 
         {/* Empty */}
         {filteredProjects.length === 0 && (
-          <div className="py-20 text-center text-muted-foreground">
+          <div
+            className="py-20 text-center text-lg"
+            style={{
+              color: "var(--muted)",
+            }}
+          >
             No projects found.
           </div>
         )}
@@ -329,6 +377,15 @@ export default function Projects() {
           onClose={() => setSelectedProject(null)}
         />
       )}
+
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(var(--primary-rgb),0.04), transparent)",
+        }}
+      />
     </section>
+
   );
 }

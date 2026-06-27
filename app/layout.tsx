@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 
 import "./globals.css";
 
-import Navbar from "@/components/layout/Navbar";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"), // Replace with your real domain
+  metadataBase: new URL("https://your-domain.com"),
 
   title: {
     default: "Himuu Codes | Full Stack Developer",
@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   ],
 
   creator: "Himuu Codes",
+
   applicationName: "Himuu Codes Portfolio",
 
   openGraph: {
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
     description:
       "Modern Portfolio built with Next.js, Tailwind CSS, TypeScript, and AI.",
     images: ["/og-image.png"],
-    creator: "@yourusername", // Optional
+    creator: "@yourusername",
   },
 
   icons: {
@@ -91,14 +92,23 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+}: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="scroll-smooth"
+    >
       <body
-        className={`${poppins.variable} font-sans bg-black text-white antialiased`}
+        className={`${poppins.variable} font-sans antialiased transition-colors duration-300`}
       >
-
-        <main className="min-h-screen pt-20">{children}</main>
+        <ThemeProvider>
+          <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

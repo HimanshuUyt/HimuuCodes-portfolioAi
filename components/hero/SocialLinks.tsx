@@ -83,13 +83,21 @@ export default function SocialLinks() {
             className="group relative"
           >
             {/* Tooltip */}
-            <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 rounded-lg bg-slate-900 px-3 py-1 text-xs font-medium text-white opacity-0 shadow-lg transition-all duration-300 group-hover:-top-12 group-hover:opacity-100">
+            <span className="pointer-events-none absolute -left-1/2 top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-3 whitespace-nowrap rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--foreground)] backdrop-blur-xl shadow-lg opacity-0 transition-all duration-300 group-hover:-translate-y-[calc(100%+6px)] group-hover:opacity-100">
               {social.name}
             </span>
 
             {/* Button */}
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-400 hover:shadow-[0_0_25px_rgba(6,182,212,.35)]">
-              <Icon size={22} />
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--card)] text-2xl text-[var(--foreground)] backdrop-blur-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:border-[var(--primary)] hover:text-[var(--primary)]"
+              style={{
+                boxShadow:
+                  "0 8px 30px rgba(var(--primary-rgb),0)",
+              }}>
+                
+              <Icon
+                size={22}
+                className="relative z-10"
+              />
             </div>
           </motion.a>
         );

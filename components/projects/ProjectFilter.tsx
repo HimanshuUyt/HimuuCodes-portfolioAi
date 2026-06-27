@@ -19,10 +19,18 @@ export default function ProjectFilter({
 }: ProjectFilterProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{
+        duration: 0.5,
+      }}
       className="mb-14 flex flex-wrap items-center justify-center gap-4"
     >
       {projectCategories.map((category) => {
@@ -40,17 +48,46 @@ export default function ProjectFilter({
               scale: 0.96,
             }}
             onClick={() => onChange(category)}
-            className={`relative overflow-hidden rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-300 ${
-              isActive
-                ? "border-cyan-400 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
-                : "border-white/10 bg-white/5 text-gray-300 backdrop-blur-xl hover:border-cyan-400/40 hover:text-white"
-            }`}
+            className="group relative overflow-hidden rounded-full px-6 py-3 text-sm font-semibold backdrop-blur-xl transition-all duration-300"
+            style={{
+              border: isActive
+                ? "1px solid var(--primary)"
+                : "1px solid var(--border)",
+
+              background: isActive
+                ? "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))"
+                : "var(--glass)",
+
+              color: isActive
+                ? "#ffffff"
+                : "var(--foreground)",
+
+              boxShadow: isActive
+                ? "0 10px 30px rgba(var(--primary-rgb),0.28)"
+                : "var(--shadow)",
+            }}
           >
             <span className="relative z-10 flex items-center gap-2">
-              {category === "All" && <Grid3X3 size={16} />}
-              {category === "Featured" && <Sparkles size={16} />}
-              <span>{category}</span>
+              {category === "All" && (
+                <Grid3X3 size={16} />
+              )}
+
+              {category === "Featured" && (
+                <Sparkles size={16} />
+              )}
+
+              {category}
             </span>
+
+            {!isActive && (
+              <motion.span
+                className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{
+                  background:
+                    "rgba(var(--primary-rgb),0.08)",
+                }}
+              />
+            )}
 
             {isActive && (
               <motion.div
@@ -60,7 +97,11 @@ export default function ProjectFilter({
                   stiffness: 350,
                   damping: 30,
                 }}
-                className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600"
+                className="absolute inset-0 -z-10 rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+                }}
               />
             )}
           </motion.button>

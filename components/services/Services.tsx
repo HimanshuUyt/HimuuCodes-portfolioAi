@@ -114,13 +114,23 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden py-24"
+      className="section-bg relative overflow-hidden py-24 transition-colors duration-300"
     >
       {/* Background Glow */}
 
-      <div className="absolute left-0 top-20 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div
+        className="absolute left-0 top-20 h-80 w-80 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.12)",
+        }}
+      />
 
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-500/10 blur-[120px]" />
+      <div
+        className="absolute bottom-0 right-0 h-80 w-80 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.12)",
+        }}
+      />
 
       <div className="container-custom relative z-10 px-6">
         {/* Header */}
@@ -140,11 +150,19 @@ export default function Services() {
           }}
           className="mx-auto mb-20 max-w-3xl text-center"
         >
-          <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
+          <span className="rounded-full border px-4 py-2 text-sm font-medium"
+            style={{
+              borderColor: "rgba(var(--primary-rgb),0.25)",
+              background: "rgba(var(--primary-rgb),0.08)",
+              color: "var(--primary)",
+            }}>
             My Services
           </span>
 
-          <h2 className="mt-6 text-4xl font-black text-white md:text-5xl">
+          <h2 className="mt-6 text-4xl font-black md:text-5xl"
+            style={{
+              color: "var(--foreground)",
+            }}>
             What
             <span className="gradient-text">
               {" "}
@@ -152,7 +170,10 @@ export default function Services() {
             </span>
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-gray-400">
+          <p className="mt-6 text-lg leading-8"
+            style={{
+              color: "var(--muted)",
+            }}>
             I create modern digital products, AI-powered
             applications, mobile apps, and scalable backend
             systems with a strong focus on performance,
@@ -187,13 +208,30 @@ export default function Services() {
           transition={{
             delay: 0.3,
           }}
-          className="mt-24 rounded-3xl border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 p-10 text-center backdrop-blur-xl"
+          className="glass mt-24 rounded-3xl p-10 text-center backdrop-blur-xl"
+          style={{
+            border: "1px solid rgba(var(--primary-rgb),0.2)",
+            background: `
+              linear-gradient(
+                135deg,
+                rgba(var(--primary-rgb),0.08),
+                rgba(var(--secondary-rgb),0.06),
+                rgba(var(--accent-rgb),0.08)
+              )
+            `,
+          }}
         >
-          <h3 className="text-3xl font-bold text-white">
+          <h3 className="text-3xl font-bold"
+            style={{
+              color: "var(--foreground)",
+            }}>
             Have a Project in Mind? 🚀
           </h3>
 
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-gray-400">
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8"
+            style={{
+              color: "var(--muted)",
+            }}>
             Whether it's a startup, portfolio, AI assistant,
             Flutter application, SaaS platform, or enterprise
             solution, I'm ready to help transform your ideas
@@ -208,12 +246,23 @@ export default function Services() {
                   behavior: "smooth",
                 })
             }
-            className="mt-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white transition duration-300 hover:scale-105"
+            className="btn-primary mt-8 rounded-full px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1"
+            style={{
+              background:
+                "linear-gradient(135deg,var(--gradient-from),var(--gradient-to))",
+            }}
           >
             Let's Discuss Your Project
           </button>
         </motion.div>
       </div>
+
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background: "var(--background)",
+        }}
+      />
     </section>
   );
 }

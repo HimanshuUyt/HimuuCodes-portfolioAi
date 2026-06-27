@@ -23,14 +23,14 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setRoleIndex(
-      (prev) => (prev + 1) % profile.roles.length
-    );
-  }, 2500);
+    const interval = setInterval(() => {
+      setRoleIndex(
+        (prev) => (prev + 1) % profile.roles.length
+      );
+    }, 2500);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToProjects = () => {
     document
@@ -41,16 +41,26 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#030712]"
-    >
+      className="relative flex min-h-screen items-center overflow-hidden bg-[var(--background)] transition-colors duration-300">
       {/* Background Glow */}
 
-      <div className="absolute left-0 top-20 h-96 w-96 rounded-full bg-cyan-500/15 blur-[120px]" />
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-purple-600/15 blur-[120px]" />
+      <div
+        className="absolute left-0 top-20 h-96 w-96 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.15)",
+        }}
+      />
+
+      <div
+        className="absolute right-0 bottom-0 h-96 w-96 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(var(--accent-rgb),0.15)",
+        }}
+      />
 
       {/* Grid */}
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      <div className="absolute inset-0 grid-bg" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 py-24 lg:grid-cols-2">
         {/* Left */}
@@ -60,23 +70,27 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm text-cyan-300">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-5 py-2 text-sm text-[var(--primary)] backdrop-blur-xl">
             <Sparkles size={16} />
             {profile.availability}
           </div>
 
-          <h2 className="text-lg font-medium text-gray-300">
+          <h2 className="text-lg font-medium text-[var(--muted)]">
             {profile.greeting}
           </h2>
 
           <h1 className="mt-3 text-5xl font-black leading-tight md:text-7xl">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
+              }}>
               {profile.nickname}
             </span>
 
             <br />
 
-            <span className="text-white">{profile.lastName}</span>
+            <span className="text-[var(--foreground)]">{profile.lastName}</span>
           </h1>
 
           <div className="mt-6 h-10">
@@ -85,20 +99,20 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="text-2xl font-semibold text-cyan-400"
+              className="text-2xl font-semibold text-[var(--primary)]"
             >
               {profile.roles[roleIndex]}
             </motion.h3>
           </div>
 
-          <p className="mt-8 max-w-xl text-lg leading-8 text-gray-400">
+          <p className="mt-8 max-w-xl text-lg leading-8 text-[var(--muted)]">
             {profile.tagline}
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <button
               onClick={scrollToProjects}
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-4 font-semibold text-white transition hover:scale-105"
+              className="btn-primary group px-7 py-4"
             >
               View Projects
 
@@ -110,8 +124,7 @@ export default function Hero() {
 
             <Link
               href={profile.resume}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-4 font-semibold text-white backdrop-blur-xl transition hover:border-cyan-400"
-            >
+              className="btn-outline px-7 py-4 backdrop-blur-xl">
               <Download size={18} />
               Resume
             </Link>
@@ -140,8 +153,7 @@ export default function Hero() {
                   y: -6,
                   scale: 1.1,
                 }}
-                className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl text-white transition hover:border-cyan-400 hover:text-cyan-400"
-              >
+                className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-2xl text-[var(--foreground)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg">
                 {item.icon}
               </motion.a>
             ))}
@@ -166,9 +178,13 @@ export default function Hero() {
             }}
             className="relative"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 blur-3xl opacity-30" />
+            <div className="absolute inset-0 rounded-full blur-3xl opacity-30"
+              style={{
+                background:
+                  "linear-gradient(135deg,var(--primary),var(--accent))",
+              }} />
 
-            <div className="relative overflow-hidden rounded-full border border-white/10 bg-white/5 p-3 backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-full border border-[var(--border)] bg-[var(--card)] p-3 backdrop-blur-xl shadow-xl">
               <Image
                 src={profile.profileImage}
                 alt="Himuu Codes"
@@ -198,8 +214,7 @@ export default function Hero() {
                 left: tech.left,
                 right: tech.right,
               }}
-              className="absolute rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-xl"
-            >
+              className="absolute rounded-full border border-[var(--border)] bg-[var(--card)] px-5 py-2 text-sm font-medium text-[var(--foreground)] backdrop-blur-xl shadow-lg">
               {tech.name}
             </motion.div>
           ))}

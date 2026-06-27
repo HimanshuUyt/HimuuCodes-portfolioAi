@@ -35,7 +35,12 @@ export default function HeroImage() {
   return (
     <div className="relative flex items-center justify-center">
       {/* Background Glow */}
-      <div className="absolute h-[420px] w-[420px] rounded-full bg-cyan-500/20 blur-[100px]" />
+      <div
+        className="absolute h-[420px] w-[420px] rounded-full blur-[100px]"
+        style={{
+          background: "rgba(var(--primary-rgb),0.18)",
+        }}
+      />
 
       {/* Decorative Ring */}
       <motion.div
@@ -45,7 +50,10 @@ export default function HeroImage() {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute h-[440px] w-[440px] rounded-full border border-cyan-500/20 border-dashed"
+        className="absolute h-[440px] w-[440px] rounded-full border border-dashed"
+        style={{
+          borderColor: "rgba(var(--primary-rgb),0.25)",
+        }}
       />
 
       {/* Floating Profile */}
@@ -61,8 +69,16 @@ export default function HeroImage() {
         className="relative"
       >
         {/* Gradient Border */}
-        <div className="rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 p-1 shadow-[0_0_80px_rgba(6,182,212,.25)]">
-          <div className="rounded-full bg-[#030712] p-2">
+        <div
+          className="rounded-full p-1"
+          style={{
+            background:
+              "linear-gradient(135deg,var(--primary),var(--secondary),var(--accent))",
+            boxShadow:
+              "0 0 80px rgba(var(--primary-rgb),0.25)",
+          }}
+        >
+          <div className="rounded-full border border-[var(--border)] bg-[var(--card)] p-2 backdrop-blur-xl">
             <Image
               src="/images/hero/profile.png"
               alt="Himuu Codes"
@@ -89,7 +105,7 @@ export default function HeroImage() {
           }}
           className={`absolute ${tech.className}`}
         >
-          <div className="rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-xl">
+          <div className="rounded-full border border-[var(--border)] bg-[var(--card)] px-5 py-2 text-sm font-medium text-[var(--foreground)] backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]">
             {tech.name}
           </div>
         </motion.div>
@@ -107,10 +123,33 @@ export default function HeroImage() {
         }}
         className="absolute h-[500px] w-[500px]"
       >
-        <div className="absolute left-0 top-1/2 h-3 w-3 rounded-full bg-cyan-400" />
-        <div className="absolute right-0 top-1/2 h-3 w-3 rounded-full bg-blue-500" />
-        <div className="absolute left-1/2 top-0 h-3 w-3 rounded-full bg-purple-500" />
-        <div className="absolute bottom-0 left-1/2 h-3 w-3 rounded-full bg-cyan-300" />
+        <div
+          className="absolute left-0 top-1/2 h-3 w-3 rounded-full"
+          style={{
+            background: "var(--primary)",
+          }}
+        />
+
+        <div
+          className="absolute right-0 top-1/2 h-3 w-3 rounded-full"
+          style={{
+            background: "var(--secondary)",
+          }}
+        />
+
+        <div
+          className="absolute left-1/2 top-0 h-3 w-3 rounded-full"
+          style={{
+            background: "var(--accent)",
+          }}
+        />
+
+        <div
+          className="absolute bottom-0 left-1/2 h-3 w-3 rounded-full"
+          style={{
+            background: "var(--primary)",
+          }}
+        />
       </motion.div>
     </div>
   );

@@ -12,7 +12,6 @@ import Education from "@/components/about/Education";
 import Skills from "@/components/skills/Skills";
 import Projects from "@/components/projects/Projects";
 import Services from "@/components/services/Services";
-import Testimonials from "@/components/testimonials/Testimonials";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/layout/Footer";
 
@@ -48,7 +47,6 @@ export default function Home() {
       <Skills />
       <Projects />
       <Services />
-      <Testimonials />
       <Contact />
       <Footer />
 

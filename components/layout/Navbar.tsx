@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 import {
   Menu,
   X,
-  Sparkles,
   Download,
   MessageCircle,
 } from "lucide-react";
@@ -76,7 +76,7 @@ export default function Navbar({
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${scrolled
-        ? "bg-black/70 backdrop-blur-xl border-b border-white/10"
+        ? "border-b border-[var(--border)] bg-[color:var(--background)]/80 backdrop-blur-2xl shadow-lg"
         : "bg-transparent"
         }`}
     >
@@ -88,11 +88,14 @@ export default function Navbar({
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-black tracking-wide cursor-pointer"
           >
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent" style={{
+              backgroundImage:
+                "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
+            }}>
               Himuu
             </span>
 
-            <span className="text-white"> Codes</span>
+            <span className="text-[var(--foreground)]"> Codes</span>
           </motion.h1>
         </Link>
 
@@ -104,8 +107,8 @@ export default function Navbar({
               key={item.name}
               onClick={() => scrollToSection(item.href, item.name)}
               className={`relative text-sm font-medium transition ${active === item.name
-                ? "text-cyan-400"
-                : "text-gray-300 hover:text-white"
+                ? "text-[var(--primary)]"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 }`}
             >
               {item.name}
@@ -113,7 +116,7 @@ export default function Navbar({
               {active === item.name && (
                 <motion.div
                   layoutId="active-nav"
-                  className="absolute -bottom-2 left-0 h-[2px] w-full rounded bg-cyan-400"
+                  className="absolute -bottom-2 left-0 h-[2px] w-full rounded bg-[var(--primary)]"
                 />
               )}
             </button>
@@ -125,8 +128,7 @@ export default function Navbar({
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={onOpenChat}
-            className="flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm text-cyan-300 transition hover:bg-cyan-500/20"
-          >
+            className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-5 py-2 text-sm font-medium text-[var(--primary)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
             <MessageCircle size={18} />
             AI Chat
           </button>
@@ -134,22 +136,24 @@ export default function Navbar({
           <a
             href="/resume.pdf"
             download
-            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg transition hover:scale-105"
+            className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105"
+            style={{
+              background:
+                "linear-gradient(135deg,var(--primary),var(--secondary))",
+            }}
           >
             <Download size={18} />
             Resume
           </a>
 
-          <button className="rounded-full border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-            <Sparkles className="text-yellow-400" size={20} />
-          </button>
+          <ThemeToggle />
         </div>
 
         {/* Mobile */}
 
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-white"
+          className="lg:hidden text-[var(--foreground)]"
         >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -164,8 +168,8 @@ export default function Navbar({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl"
-          >
+            className="lg:hidden border-t border-[var(--border)] bg-[color:var(--background)]/95 backdrop-blur-2xl">
+
             <div className="flex flex-col gap-5 p-6">
               {navItems.map((item) => (
                 <button
@@ -174,8 +178,8 @@ export default function Navbar({
                     scrollToSection(item.href, item.name)
                   }
                   className={`text-left text-lg transition ${active === item.name
-                    ? "text-cyan-400"
-                    : "text-gray-300"
+                    ? "text-[var(--primary)]"
+                    : "text-[var(--muted)]"
                     }`}
                 >
                   {item.name}
@@ -188,8 +192,8 @@ export default function Navbar({
                     setOpen(false);
                     onOpenChat();
                   }}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 py-3 text-cyan-300"
-                >
+                  className="flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] py-3 font-medium text-[var(--primary)] transition-all hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.08)]">
+
                   <MessageCircle size={18} />
                   AI Chat
                 </button>
@@ -197,7 +201,11 @@ export default function Navbar({
                 <a
                   href="/resume.pdf"
                   download
-                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 font-semibold text-white"
+                  className="flex items-center justify-center gap-2 rounded-xl py-3 font-semibold text-white"
+                  style={{
+                    background:
+                      "linear-gradient(135deg,var(--primary),var(--secondary))",
+                  }}
                 >
                   <Download size={18} />
                   Download Resume
