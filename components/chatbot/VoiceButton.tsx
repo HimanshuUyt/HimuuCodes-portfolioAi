@@ -85,7 +85,7 @@ export default function VoiceButton({
       setIsListening(false);
     };
 
-    recognition.onresult = (event) => {
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
       let transcript = "";
 
       for (
