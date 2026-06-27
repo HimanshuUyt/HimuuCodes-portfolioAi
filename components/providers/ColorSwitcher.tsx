@@ -69,7 +69,14 @@ export default function ColorSwitcher() {
         className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background transition hover:bg-accent"
         aria-label="Change Accent Color"
       >
-        <Palette className="h-5 w-5" />
+        <motion.div
+          whileHover={{ rotate: 180 }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
+          <Palette className="h-5 w-5 text-[var(--primary)]" />
+        </motion.div>
       </button>
 
       <AnimatePresence>
@@ -93,7 +100,7 @@ export default function ColorSwitcher() {
             transition={{
               duration: 0.2,
             }}
-            className="absolute right-0 mt-3 w-72 rounded-2xl border border-border bg-background p-4 shadow-2xl"
+            className="absolute right-0 mt-3 w-72 rounded-3xl border border-[var(--border)] bg-[var(--card)]/95 p-5 backdrop-blur-2xl shadow-2xl"
           >
             <h3 className="mb-4 text-sm font-semibold">
               Accent Color
@@ -108,11 +115,10 @@ export default function ColorSwitcher() {
                     setOpen(false);
                   }}
                   title={color.name}
-                  className={`relative h-12 w-12 rounded-full transition hover:scale-110 ${
-                    accent === color.id
-                      ? "ring-2 ring-primary ring-offset-2"
+                  className={`relative h-12 w-12 rounded-full transition hover:scale-110 ${accent === color.id
+                      ? "ring-2 ring-[var(--primary)] ring-offset-2"
                       : ""
-                  }`}
+                    }`}
                   style={{
                     background: `linear-gradient(135deg, ${color.from}, ${color.to})`,
                   }}

@@ -40,6 +40,8 @@ export function useAccent() {
   return context;
 }
 
+const STORAGE_KEY = "portfolio-accent";
+
 const accentColors: Record<
   Accent,
   {
@@ -97,7 +99,17 @@ const accentColors: Record<
   },
 };
 
-const STORAGE_KEY = "portfolio-accent";
+function hexToRgb(hex: string) {
+  const value = hex.replace("#", "");
+
+  const bigint = parseInt(value, 16);
+
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return `${r}, ${g}, ${b}`;
+}
 
 export default function ThemeProvider({
   children,
@@ -124,24 +136,55 @@ export default function ThemeProvider({
 
     const color = accentColors[accent];
 
-    function hexToRgb(hex: string) {
-      const c = hex.replace("#", "");
+    root.style.setProperty(
+      "--primary",
+      color.primary
+    );
 
-      const bigint = parseInt(c, 16);
+    root.style.setProperty(
+      "--secondary",
+      color.secondary
+    );
 
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
+    root.style.setProperty(
+      "--accent",
+      color.accent
+    );
 
-      return `${r},${g},${b}`;
-    }
+    root.style.setProperty(
+      "--primary-rgb",
+      hexToRgb(color.primary)
+    );
+
+    root.style.setProperty(
+      "--secondary-rgb",
+      hexToRgb(color.secondary)
+    );
+
+    root.style.setProperty(
+      "--accent-rgb",
+      hexToRgb(color.accent)
+    );
+
+    root.style.setProperty(
+      "--gradient-from",
+      color.primary
+    );
+
+    root.style.setProperty(
+      "--gradient-to",
+      color.secondary
+    );
 
     const meta = document.querySelector(
       'meta[name="theme-color"]'
     );
 
     if (meta) {
-      meta.setAttribute("content", color.primary);
+      meta.setAttribute(
+        "content",
+        color.primary
+      );
     }
   }, [accent]);
 

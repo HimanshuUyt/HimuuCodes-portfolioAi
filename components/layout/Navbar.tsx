@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import ColorSwitcher from "@/components/providers/ColorSwitcher";
 import {
   Menu,
   X,
   Download,
   MessageCircle,
+  Settings2,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -54,6 +56,8 @@ export default function Navbar({
         }
       }
     };
+
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
 
@@ -147,6 +151,8 @@ export default function Navbar({
           </a>
 
           <ThemeToggle />
+
+          <ColorSwitcher />
         </div>
 
         {/* Mobile */}
