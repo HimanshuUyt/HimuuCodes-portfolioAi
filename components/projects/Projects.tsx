@@ -49,9 +49,9 @@ const projects: ProjectType[] = [
       "GetX",
     ],
 
-    github: "https://github.com/yourusername/moneyflow",
+    github: "https://github.com/HimanshuUyt/moneyflow-website",
 
-    live: "https://moneyflow.vercel.app",
+    live: "https://moneyflow-website.vercel.app",
 
     featured: true,
 
@@ -80,7 +80,7 @@ const projects: ProjectType[] = [
   {
     id: 2,
 
-    title: "Portfolio Website",
+    title: "Old Portfolio Website",
 
     description:
       "Modern animated portfolio built with Next.js, Tailwind CSS, and Framer Motion.",
@@ -88,7 +88,7 @@ const projects: ProjectType[] = [
     longDescription:
       "A modern personal portfolio showcasing projects, skills, experience, certifications, and contact information with smooth animations and responsive layouts.",
 
-    image: "/projects/portfolio.webp",
+    image: "/images/projects/oldportfolio.png",
 
     category: "Web",
 
@@ -99,9 +99,9 @@ const projects: ProjectType[] = [
       "Framer Motion",
     ],
 
-    github: "https://github.com/yourusername/portfolio",
+    github: "https://https://github.com/HimanshuUyt/portfolio",
 
-    live: "https://portfolio.vercel.app",
+    live: "https://portfolio-six-sand-mncruc6fu7.vercel.app/",
 
     duration: "2 Months",
 
@@ -120,19 +120,18 @@ const projects: ProjectType[] = [
       "Optimized performance and Lighthouse score.",
     ],
   },
-
   {
     id: 3,
 
-    title: "Admin Dashboard",
+    title: "College Minor Project - Travel Website",
 
     description:
-      "Responsive analytics dashboard with charts, authentication, and user management.",
+      "A modern travel booking platform for exploring destinations, booking tours, hotels, and vacation packages with a responsive user experience.",
 
     longDescription:
-      "A complete admin panel for managing users, transactions, reports, analytics, categories, and system settings with role-based authentication.",
+      "A full-stack travel booking website that allows users to browse destinations, search hotels and tour packages, make bookings, manage reservations, and securely authenticate. The platform features an intuitive interface, responsive design, and an admin panel for managing destinations, bookings, and customers.",
 
-    image: "/projects/dashboard.webp",
+    image: "/projects/travel-booking.webp",
 
     category: "Web",
 
@@ -141,28 +140,33 @@ const projects: ProjectType[] = [
       "Node.js",
       "Express",
       "MongoDB",
-      "Chart.js",
+      "Tailwind CSS",
     ],
 
-    github: "https://github.com/yourusername/dashboard",
+    github: "https://github.com/HimanshuUyt/MiniorProject",
 
-    live: "https://dashboard.vercel.app",
+    live: "https://travel-booking.vercel.app",
 
     duration: "3 Months",
 
     role: "Full Stack Developer",
 
     features: [
-      "Dashboard Analytics",
-      "Charts & Reports",
-      "Authentication",
-      "Role Management",
-      "Responsive Design",
+      "Destination Search",
+      "Hotel & Tour Booking",
+      "Secure User Authentication",
+      "Booking Management",
+      "Responsive UI",
+      "Admin Dashboard",
+      "Wishlist & Favorites",
+      "Contact & Inquiry System",
     ],
 
     challenges: [
-      "Created scalable dashboard architecture.",
-      "Implemented secure JWT authentication.",
+      "Designed a scalable booking workflow for tours and hotels.",
+      "Implemented secure authentication and booking management.",
+      "Optimized MongoDB queries for faster destination searches.",
+      "Built a fully responsive interface across all devices.",
     ],
   },
 
