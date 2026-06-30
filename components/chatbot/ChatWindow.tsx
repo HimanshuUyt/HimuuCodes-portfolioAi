@@ -13,7 +13,13 @@ import SuggestedQuestions from "./SuggestedQuestions";
 
 import { CHATBOT_NAME } from "./constants";
 
-export default function ChatWindow() {
+interface ChatWindowProps {
+  onClose?: () => void;
+}
+
+export default function ChatWindow({
+  onClose,
+}: ChatWindowProps) {
   const {
     messages,
     loading,
@@ -30,9 +36,12 @@ export default function ChatWindow() {
   }, [messages, loading]);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden bg-background md:h-[700px] md:w-[430px] md:rounded-3xl md:border md:shadow-2xl">
+    <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--background)] md:h-[700px] md:w-[430px] md:rounded-3xl md:border md:shadow-2xl"
+      style={{
+        borderColor: "var(--border)",
+      }}>
       <ChatHeader
-        onClose={() => {}}
+        onClose={onClose}
         onClear={clearMessages}
       />
 
@@ -43,15 +52,29 @@ export default function ChatWindow() {
             animate={{ opacity: 1 }}
             className="flex h-full flex-col items-center justify-center"
           >
-            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-xl md:h-20 md:w-20">
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full text-white shadow-xl md:h-20 md:w-20"
+              style={{
+                background:
+                  "linear-gradient(135deg,var(--primary),var(--secondary))",
+                boxShadow:
+                  "0 15px 40px rgba(var(--primary-rgb),0.35)",
+              }}>
               <Bot className="h-8 w-8 text-white md:h-10 md:w-10" />
             </div>
 
-            <h2 className="text-2xl font-bold md:text-3xl">
+            <h2
+              className="text-2xl font-bold md:text-3xl"
+              style={{
+                color: "var(--foreground)",
+              }}
+            >
               {CHATBOT_NAME}
             </h2>
 
-            <p className="mt-3 max-w-sm px-4 text-center text-sm text-muted-foreground md:px-0 md:text-base">
+            <p className="mt-3 max-w-sm px-4 text-center text-sm md:px-0 md:text-base"
+              style={{
+                color: "var(--muted)",
+              }}>
               Ask anything about my experience, projects, skills,
               education or how we can work together.
             </p>
@@ -85,23 +108,53 @@ export default function ChatWindow() {
 
             {loading && (
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full text-white"
+                  style={{
+                    background:
+                      "linear-gradient(135deg,var(--primary),var(--secondary))",
+                  }}>
                   <Bot size={18} />
                 </div>
 
-                <div className="max-w-[80%] rounded-2xl border bg-card px-4 py-3">
-                  <div className="mb-2 flex items-center gap-2 text-sm font-medium">
+                <div className="max-w-[80%] rounded-2xl border px-4 py-3"
+                  style={{
+                    background: "var(--card)",
+                    borderColor: "var(--border)",
+                  }}>
+                  <div className="mb-2 flex items-center gap-2 text-sm font-medium"
+                    style={{
+                      color: "var(--foreground)",
+                    }}>
                     <Sparkles
                       size={16}
-                      className="text-violet-500"
+                      style={{
+                        color: "var(--primary)",
+                      }}
                     />
                     Thinking...
                   </div>
 
                   <div className="flex gap-2">
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-violet-500" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-violet-500 [animation-delay:-0.15s]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-violet-500 [animation-delay:-0.3s]" />
+                    <span
+                      className="h-2 w-2 animate-bounce rounded-full"
+                      style={{
+                        background: "var(--primary)",
+                      }}
+                    />
+
+                    <span
+                      className="h-2 w-2 animate-bounce rounded-full [animation-delay:-0.15s]"
+                      style={{
+                        background: "var(--primary)",
+                      }}
+                    />
+
+                    <span
+                      className="h-2 w-2 animate-bounce rounded-full [animation-delay:-0.3s]"
+                      style={{
+                        background: "var(--primary)",
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -112,7 +165,12 @@ export default function ChatWindow() {
         )}
       </div>
 
-      <div className="border-t bg-background">
+      <div
+        className="border-t bg-[var(--background)]"
+        style={{
+          borderColor: "var(--border)",
+        }}
+      >
         <ChatInput
           loading={loading}
           onSend={sendMessage}

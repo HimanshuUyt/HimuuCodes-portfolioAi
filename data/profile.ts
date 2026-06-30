@@ -82,15 +82,11 @@ beautiful user interfaces, and high-performance backend systems.
   resume: "/resume.pdf",
 
   social: {
-    github: "https://github.com/yourusername",
+    github: "https://github.com/HimanshuUyt",
 
-    linkedin: "https://linkedin.com/in/yourusername",
+    linkedin: "https://www.linkedin.com/in/ighimanshuu/",
 
-    instagram: "https://instagram.com/yourusername",
-
-    twitter: "https://twitter.com/yourusername",
-
-    youtube: "https://youtube.com/@yourusername",
+    instagram: "https://instagram.com/himuu.codes",
   },
 
   // Statistics

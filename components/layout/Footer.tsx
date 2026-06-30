@@ -28,22 +28,22 @@ const quickLinks = [
 const socials = [
   {
     name: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/HimanshuUyt",
     icon: FaGithub,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://linkedin.com/in/ighimanshuu",
     icon: FaLinkedin,
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/yourusername",
+    href: "https://instagram.com/himuu.codes",
     icon: FaInstagram,
   },
   {
     name: "X",
-    href: "https://x.com/yourusername",
+    href: "https://x.com/HimanshuUyt",
     icon: FaXTwitter,
   },
 ];
@@ -117,7 +117,7 @@ export default function Footer() {
 
             <div className="mt-2 flex items-center gap-2 text-sm text-[var(--muted)]">
               <Mail size={16} />
-              your@email.com
+              himuucodes@email.com
             </div>
           </div>
 

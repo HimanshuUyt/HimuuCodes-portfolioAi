@@ -51,16 +51,21 @@ export default function ChatMessage({
       transition={{
         duration: 0.25,
       }}
-      className={`flex gap-3 ${
-        isUser
-          ? "justify-end"
-          : "justify-start"
-      }`}
+      className={`flex gap-3 ${isUser
+        ? "justify-end"
+        : "justify-start"
+        }`}
     >
       {/* AI Avatar */}
 
       {!isUser && (
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white shadow-lg"
+          style={{
+            background:
+              "linear-gradient(135deg,var(--primary),var(--secondary))",
+            boxShadow:
+              "0 8px 25px rgba(var(--primary-rgb),0.35)",
+          }}>
           <Bot
             size={20}
             className="text-white"
@@ -71,26 +76,27 @@ export default function ChatMessage({
       {/* Message */}
 
       <div
-        className={`group relative max-w-[85%] ${
-          isUser ? "order-1" : ""
-        }`}
+        className={`group relative max-w-[85%] ${isUser ? "order-1" : ""
+          }`}
       >
         {/* Header */}
 
         <div
-          className={`mb-2 flex items-center gap-2 ${
-            isUser
-              ? "justify-end"
-              : "justify-start"
-          }`}
+          className={`mb-2 flex items-center gap-2 ${isUser
+            ? "justify-end"
+            : "justify-start"
+            }`}
         >
-          <span className="text-xs font-semibold text-cyan-400">
+          <span className="text-xs font-semibold"
+            style={{
+              color: "var(--primary)",
+            }}>
             {isUser
               ? "You"
               : "Himuu AI"}
           </span>
 
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-[var(--muted)]">
             {formatTime(
               message.timestamp
             )}
@@ -99,13 +105,27 @@ export default function ChatMessage({
           {!isUser && (
             <button
               onClick={handleCopy}
-              className="rounded-md p-1 text-gray-500 transition hover:bg-white/10 hover:text-white"
+              className="rounded-md p-1 transition"
+              style={{
+                color: "var(--muted)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background =
+                  "rgba(var(--primary-rgb),0.10)";
+                e.currentTarget.style.color = "var(--foreground)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "var(--muted)";
+              }}
               title="Copy message"
             >
               {copied ? (
                 <Check
                   size={14}
-                  className="text-emerald-400"
+                  style={{
+                    color: "var(--primary)",
+                  }}
                 />
               ) : (
                 <Copy size={14} />
@@ -117,14 +137,24 @@ export default function ChatMessage({
         {/* Bubble */}
 
         <div
-          className={`rounded-2xl border px-5 py-4 backdrop-blur-xl ${
+          className={`rounded-2xl border px-5 py-4 backdrop-blur-xl ${isUser ? "rounded-br-md text-white" : "rounded-bl-md"
+            }`}
+          style={
             isUser
-              ? "rounded-br-md border-cyan-500/30 bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
-              : "rounded-bl-md border-white/10 bg-white/5 text-gray-300"
-          }`}
+              ? {
+                borderColor: "rgba(var(--primary-rgb),0.35)",
+                background:
+                  "linear-gradient(135deg,var(--primary),var(--secondary))",
+              }
+              : {
+                borderColor: "var(--border)",
+                background: "var(--card)",
+                color: "var(--foreground)",
+              }
+          }
         >
           {isUser ? (
-            <p className="whitespace-pre-wrap break-words leading-7">
+            <p className="whitespace-pre-wrap break-words leading-7 text-white">
               {message.content}
             </p>
           ) : (
@@ -138,7 +168,7 @@ export default function ChatMessage({
 
         {isUser &&
           message.status && (
-            <div className="mt-2 text-right text-xs text-gray-500">
+            <div className="mt-2 text-right text-xs text-[var(--muted)]">
               {message.status ===
                 "sending" &&
                 "Sending..."}
@@ -157,7 +187,13 @@ export default function ChatMessage({
       {/* User Avatar */}
 
       {isUser && (
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-600 shadow-lg">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white shadow-lg"
+          style={{
+            background:
+              "linear-gradient(135deg,var(--secondary),var(--accent))",
+            boxShadow:
+              "0 8px 25px rgba(var(--secondary-rgb),0.35)",
+          }}>
           <User
             size={20}
             className="text-white"

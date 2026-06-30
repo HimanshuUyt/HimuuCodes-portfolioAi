@@ -17,11 +17,24 @@ export default function ChatLauncher({
             key="close"
             type="button"
             onClick={onToggle}
-            initial={{ scale: 0.7, rotate: -90, opacity: 0 }}
-            animate={{ scale: 1, rotate: 0, opacity: 1 }}
-            exit={{ scale: 0.7, rotate: 90, opacity: 0 }}
+            initial={{
+              scale: 0.7,
+              rotate: -90,
+              opacity: 0,
+            }}
+            animate={{
+              scale: 1,
+              rotate: 0,
+              opacity: 1,
+            }}
+            exit={{
+              scale: 0.7,
+              rotate: 90,
+              opacity: 0,
+            }}
             whileHover={{
               scale: 1.08,
+              rotate: 90,
             }}
             whileTap={{
               scale: 0.94,
@@ -29,8 +42,14 @@ export default function ChatLauncher({
             transition={{
               duration: 0.25,
             }}
-            className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white shadow-2xl shadow-cyan-500/30 md:h-16 md:w-16"
             aria-label="Close AI Chat"
+            className="group flex h-14 w-14 items-center justify-center rounded-full text-white shadow-2xl md:h-16 md:w-16"
+            style={{
+              background:
+                "linear-gradient(135deg,var(--primary),var(--secondary))",
+              boxShadow:
+                "0 18px 45px rgba(var(--primary-rgb),0.35)",
+            }}
           >
             <X className="h-7 w-7 transition-transform duration-300 group-hover:rotate-90" />
           </motion.button>
@@ -39,9 +58,21 @@ export default function ChatLauncher({
             key="open"
             type="button"
             onClick={onToggle}
-            initial={{ scale: 0.7, rotate: 90, opacity: 0 }}
-            animate={{ scale: 1, rotate: 0, opacity: 1 }}
-            exit={{ scale: 0.7, rotate: -90, opacity: 0 }}
+            initial={{
+              scale: 0.7,
+              rotate: 90,
+              opacity: 0,
+            }}
+            animate={{
+              scale: 1,
+              rotate: 0,
+              opacity: 1,
+            }}
+            exit={{
+              scale: 0.7,
+              rotate: -90,
+              opacity: 0,
+            }}
             whileHover={{
               scale: 1.08,
             }}
@@ -51,38 +82,79 @@ export default function ChatLauncher({
             transition={{
               duration: 0.25,
             }}
-            className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white shadow-2xl shadow-cyan-500/30"
             aria-label="Open AI Chat"
+            className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full text-white shadow-2xl"
+            style={{
+              background:
+                "linear-gradient(135deg,var(--primary),var(--secondary))",
+              boxShadow:
+                "0 18px 45px rgba(var(--primary-rgb),0.35)",
+            }}
           >
             {/* Animated Ring */}
-            <span className="absolute inset-0 rounded-full border-2 border-cyan-400/40 animate-ping" />
+
+            <span
+              className="absolute inset-0 animate-ping rounded-full border-2"
+              style={{
+                borderColor:
+                  "rgba(var(--primary-rgb),0.45)",
+              }}
+            />
 
             {/* Glow */}
-            <span className="absolute inset-0 rounded-full bg-cyan-500/20 blur-xl" />
+
+            <span
+              className="absolute inset-0 rounded-full blur-xl"
+              style={{
+                background:
+                  "rgba(var(--primary-rgb),0.20)",
+              }}
+            />
 
             {/* Icon */}
-            <Bot className="relative h-7 w-7 transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8" />
 
-            {/* Notification Badge */}
+            <Bot className="relative h-7 w-7 transition duration-300 group-hover:scale-110 md:h-8 md:w-8" />
+
+            {/* AI Badge */}
+
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
+              initial={{
+                scale: 0,
+              }}
+              animate={{
+                scale: 1,
+              }}
               transition={{
                 delay: 0.4,
               }}
-              className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white shadow-lg md:h-6 md:w-6 md:text-[10px]">
+              className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-lg"
+              style={{
+                background:
+                  "linear-gradient(135deg,var(--accent),var(--secondary))",
+              }}
+            >
               AI
             </motion.div>
 
             {/* Tooltip */}
-            <div className="pointer-events-none absolute right-20 whitespace-nowrap rounded-xl border border-white/10 bg-slate-900 px-4 py-2 text-sm font-medium text-white opacity-0 shadow-xl transition-all duration-300 group-hover:opacity-100">
+
+            <div
+              className="pointer-events-none absolute right-20 whitespace-nowrap rounded-xl border px-4 py-2 text-sm font-medium opacity-0 shadow-xl backdrop-blur-xl transition-all duration-300 group-hover:opacity-100"
+              style={{
+                borderColor: "var(--border)",
+                background:
+                  "color-mix(in srgb,var(--background) 90%, transparent)",
+                color: "var(--foreground)",
+              }}
+            >
               Chat with AI
             </div>
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Floating Message Bubble */}
+      {/* Floating Bubble */}
+
       {!isOpen && (
         <motion.div
           initial={{
@@ -96,9 +168,21 @@ export default function ChatLauncher({
           transition={{
             delay: 0.6,
           }}
-          className="absolute -left-44 bottom-4 hidden rounded-2xl border border-white/10 bg-slate-900/90 px-4 py-3 text-sm text-white shadow-xl backdrop-blur-md lg:flex lg:items-center lg:gap-2"
+          className="absolute -left-44 bottom-4 hidden items-center gap-2 rounded-2xl border px-4 py-3 text-sm shadow-xl backdrop-blur-xl lg:flex"
+          style={{
+            borderColor: "var(--border)",
+            background:
+              "color-mix(in srgb,var(--background) 90%, transparent)",
+            color: "var(--foreground)",
+          }}
         >
-          <MessageCircle className="h-4 w-4 text-cyan-400" />
+          <MessageCircle
+            className="h-4 w-4"
+            style={{
+              color: "var(--primary)",
+            }}
+          />
+
           Ask me anything!
         </motion.div>
       )}

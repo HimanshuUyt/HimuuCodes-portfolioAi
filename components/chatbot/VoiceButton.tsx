@@ -57,7 +57,6 @@ export default function VoiceButton({
       ).SpeechRecognition ||
       (
         window as Window & {
-          SpeechRecognition?: new () => SpeechRecognitionLike;
           webkitSpeechRecognition?: new () => SpeechRecognitionLike;
         }
       ).webkitSpeechRecognition;
@@ -85,7 +84,7 @@ export default function VoiceButton({
       setIsListening(false);
     };
 
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
+    recognition.onresult = (event: any) => {
       let transcript = "";
 
       for (
@@ -136,22 +135,43 @@ export default function VoiceButton({
       type="button"
       onClick={handleClick}
       disabled={disabled}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      className={`relative flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
-        isListening
-          ? "border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/30"
-          : "border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500 hover:text-white"
-      }`}
+      whileHover={{
+        scale: 1.08,
+      }}
+      whileTap={{
+        scale: 0.95,
+      }}
       aria-label={
         isListening
           ? "Stop voice input"
           : "Start voice input"
       }
+      className="relative flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300"
+      style={
+        isListening
+          ? {
+              borderColor: "var(--accent)",
+              background:
+                "linear-gradient(135deg,var(--accent),var(--secondary))",
+              color: "#fff",
+              boxShadow:
+                "0 10px 30px rgba(var(--primary-rgb),0.35)",
+            }
+          : {
+              borderColor:
+                "rgba(var(--primary-rgb),0.25)",
+              background:
+                "rgba(var(--primary-rgb),0.10)",
+              color: "var(--primary)",
+            }
+      }
     >
       {isListening && (
         <motion.span
-          className="absolute inset-0 rounded-full border border-red-400"
+          className="absolute inset-0 rounded-full border"
+          style={{
+            borderColor: "var(--primary)",
+          }}
           animate={{
             scale: [1, 1.6],
             opacity: [0.7, 0],

@@ -17,15 +17,11 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <div
-        className="
-          h-11
-          w-11
-          animate-pulse
-          rounded-full
-          border
-          border-[var(--border)]
-          bg-[var(--card)]
-        "
+        className="h-11 w-11 animate-pulse rounded-full border"
+        style={{
+          borderColor: "var(--border)",
+          background: "var(--card)",
+        }}
       />
     );
   }
@@ -45,43 +41,20 @@ export default function ThemeToggle() {
         rotate: -8,
       }}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="
-        group
-        relative
-        flex
-        h-11
-        w-11
-        items-center
-        justify-center
-        overflow-hidden
-        rounded-full
-        border
-        border-[var(--border)]
-        bg-[var(--card)]
-        backdrop-blur-xl
-        shadow-lg
-        transition-all
-        duration-300
-        hover:border-cyan-400
-        hover:shadow-cyan-500/25
-      "
+      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border backdrop-blur-xl shadow-lg transition-all duration-300"
+      style={{
+        borderColor: "var(--border)",
+        background: "var(--card)",
+      }}
     >
       {/* Hover Glow */}
 
-      <span
-        className="
-          absolute
-          inset-0
-          rounded-full
-          bg-cyan-400/10
-          opacity-0
-          transition-opacity
-          duration-300
-          group-hover:opacity-100
-        "
+      <motion.span
+        className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: "rgba(var(--primary-rgb),0.12)",
+        }}
       />
-
-      {/* Animated Icon */}
 
       <AnimatePresence mode="wait">
         {isDark ? (
@@ -109,7 +82,10 @@ export default function ThemeToggle() {
           >
             <Sun
               size={20}
-              className="fill-yellow-400 text-yellow-400"
+              style={{
+                color: "var(--primary)",
+                fill: "var(--primary)",
+              }}
             />
           </motion.div>
         ) : (
@@ -137,7 +113,9 @@ export default function ThemeToggle() {
           >
             <Moon
               size={20}
-              className="text-[var(--foreground)]"
+              style={{
+                color: "var(--primary)",
+              }}
             />
           </motion.div>
         )}

@@ -85,7 +85,7 @@ export default function LoadingScreen() {
             }}
             className="gradient-text text-2xl font-black"
           >
-            H
+            Himuu
           </motion.span>
           <span
             style={{

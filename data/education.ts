@@ -29,7 +29,7 @@ export const education: Education[] = [
   {
     id: "bca",
 
-    institution: "Your University Name",
+    institution: "VNSGU (Veer Narmad South Gujarat University)",
 
     degree: "Bachelor of Computer Applications (BCA)",
 
@@ -84,7 +84,7 @@ export const education: Education[] = [
   {
     id: "higher-secondary",
 
-    institution: "Your Higher Secondary School",
+    institution: "Riverdale Academy",
 
     degree: "Higher Secondary (12th)",
 

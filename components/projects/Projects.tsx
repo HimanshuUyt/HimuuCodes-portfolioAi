@@ -99,7 +99,7 @@ const projects: ProjectType[] = [
       "Framer Motion",
     ],
 
-    github: "https://https://github.com/HimanshuUyt/portfolio",
+    github: "https://github.com/HimanshuUyt/portfolio",
 
     live: "https://portfolio-six-sand-mncruc6fu7.vercel.app/",
 
@@ -123,7 +123,7 @@ const projects: ProjectType[] = [
   {
     id: 3,
 
-    title: "College Minor Project - Travel Website",
+    title: "Voyage Venture Travel Website",
 
     description:
       "A modern travel booking platform for exploring destinations, booking tours, hotels, and vacation packages with a responsive user experience.",
@@ -131,7 +131,7 @@ const projects: ProjectType[] = [
     longDescription:
       "A full-stack travel booking website that allows users to browse destinations, search hotels and tour packages, make bookings, manage reservations, and securely authenticate. The platform features an intuitive interface, responsive design, and an admin panel for managing destinations, bookings, and customers.",
 
-    image: "/projects/travel-booking.webp",
+    image: "/images/projects/voyageventure.png",
 
     category: "Web",
 
@@ -145,7 +145,7 @@ const projects: ProjectType[] = [
 
     github: "https://github.com/HimanshuUyt/MiniorProject",
 
-    live: "https://travel-booking.vercel.app",
+    live: "https://voyageventure.onrender.com/",
 
     duration: "3 Months",
 

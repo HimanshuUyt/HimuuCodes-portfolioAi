@@ -29,8 +29,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 9328097349",
+    href: "tel:+919328097349",
     color: "from-green-500 to-emerald-600",
   },
   {
@@ -52,22 +52,22 @@ const contactInfo = [
 const socialLinks = [
   {
     icon: FaGithub,
-    href: "https://github.com/yourusername",
+    href: "https://github.com/HimanshuUyt",
     label: "GitHub",
   },
   {
     icon: FaLinkedin,
-    href: "https://linkedin.com/in/yourusername",
+    href: "http://www.linkedin.com/in/ighimanshuu",
     label: "LinkedIn",
   },
   {
     icon: FaInstagram,
-    href: "https://instagram.com/yourusername",
+    href: "https://instagram.com/himuu.codes",
     label: "Instagram",
   },
   {
     icon: FaXTwitter,
-    href: "https://x.com/yourusername",
+    href: "https://x.com/HimanshuUyt",
     label: "X",
   },
 ];

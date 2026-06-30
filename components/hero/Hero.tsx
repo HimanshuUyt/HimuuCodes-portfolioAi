@@ -80,7 +80,7 @@ export default function Hero() {
           </h2>
 
           <h1 className="mt-3 text-5xl font-black leading-tight md:text-7xl">
-            <span className="bg-clip-text text-transparent"
+            <span className="gradient-text bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
@@ -93,7 +93,7 @@ export default function Hero() {
             <span className="text-[var(--foreground)]">{profile.lastName}</span>
           </h1>
 
-          <div className="mt-6 h-10">
+          <div className="mt-6 h-10 gradient-text">
             <motion.h3
               key={roleIndex}
               initial={{ opacity: 0, y: 15 }}

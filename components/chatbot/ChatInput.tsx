@@ -1,6 +1,11 @@
 "use client";
 
-import { useRef, useState, KeyboardEvent, ChangeEvent } from "react";
+import {
+  useRef,
+  useState,
+  KeyboardEvent,
+  ChangeEvent,
+} from "react";
 import { Send, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -20,9 +25,7 @@ export default function ChatInput({
   const textareaRef =
     useRef<HTMLTextAreaElement>(null);
 
-  const [message, setMessage] =
-    useState("");
-
+  const [message, setMessage] = useState("");
   const [isSending, setIsSending] =
     useState(false);
 
@@ -30,7 +33,6 @@ export default function ChatInput({
     if (!textareaRef.current) return;
 
     textareaRef.current.style.height = "auto";
-
     textareaRef.current.style.height = `${Math.min(
       textareaRef.current.scrollHeight,
       160
@@ -42,12 +44,9 @@ export default function ChatInput({
   ) => {
     const value = event.target.value;
 
-    if (value.length > MAX_MESSAGE_LENGTH) {
-      return;
-    }
+    if (value.length > MAX_MESSAGE_LENGTH) return;
 
     setMessage(value);
-
     resizeTextarea();
   };
 
@@ -86,7 +85,6 @@ export default function ChatInput({
       !event.shiftKey
     ) {
       event.preventDefault();
-
       sendMessage();
     }
   };
@@ -107,16 +105,26 @@ export default function ChatInput({
 
     requestAnimationFrame(() => {
       resizeTextarea();
-
       textareaRef.current?.focus();
     });
   };
 
   return (
-    <div className="border-t border-white/10 bg-slate-900/60 p-4 backdrop-blur-xl">
-      {/* Input */}
-
-      <div className="rounded-2xl border border-white/10 bg-white/5 transition focus-within:border-cyan-500/40">
+    <div
+      className="border-t p-4 backdrop-blur-xl transition-colors duration-300"
+      style={{
+        borderColor: "var(--border)",
+        background:
+          "color-mix(in srgb,var(--background) 92%, transparent)",
+      }}
+    >
+      <div
+        className="rounded-2xl border transition-all duration-300"
+        style={{
+          borderColor: "var(--border)",
+          background: "var(--card)",
+        }}
+      >
         <textarea
           ref={textareaRef}
           rows={1}
@@ -125,31 +133,37 @@ export default function ChatInput({
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder={PLACEHOLDER}
-          className="max-h-40 min-h-[48px] w-full resize-none bg-transparent px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none"
+          className="max-h-40 min-h-[48px] w-full resize-none bg-transparent px-4 py-3 text-sm outline-none"
+          style={{
+            color: "var(--foreground)",
+          }}
         />
 
-        {/* Bottom */}
-
-        <div className="flex items-center justify-between border-t border-white/10 px-3 py-3">
-          {/* Counter */}
-
+        <div
+          className="flex items-center justify-between border-t px-3 py-3"
+          style={{
+            borderColor: "var(--border)",
+          }}
+        >
           <span
-            className={`text-xs ${message.length >
-              MAX_MESSAGE_LENGTH * 0.9
-              ? "text-yellow-400"
-              : "text-gray-500"
-              }`}
+            className="text-xs transition-colors"
+            style={{
+              color:
+                message.length >
+                MAX_MESSAGE_LENGTH * 0.9
+                  ? "#f59e0b"
+                  : "var(--muted)",
+            }}
           >
-            {message.length}/
-            {MAX_MESSAGE_LENGTH}
+            {message.length}/{MAX_MESSAGE_LENGTH}
           </span>
-
-          {/* Actions */}
 
           <div className="flex items-center gap-2">
             <VoiceButton
               disabled={
-                disabled || loading || isSending
+                disabled ||
+                loading ||
+                isSending
               }
               onTranscript={
                 handleTranscript
@@ -159,7 +173,7 @@ export default function ChatInput({
             <motion.button
               type="button"
               whileHover={{
-                scale: 1.05,
+                scale: 1.06,
               }}
               whileTap={{
                 scale: 0.95,
@@ -171,7 +185,13 @@ export default function ChatInput({
                 !isValidMessage(message)
               }
               onClick={sendMessage}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20 transition disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-white shadow-lg transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+              style={{
+                background:
+                  "linear-gradient(135deg,var(--primary),var(--secondary))",
+                boxShadow:
+                  "0 8px 24px rgba(var(--primary-rgb),0.35)",
+              }}
             >
               {isSending ? (
                 <Loader2
@@ -186,11 +206,28 @@ export default function ChatInput({
         </div>
       </div>
 
-      {/* Helper */}
-
-      <p className="mt-3 text-center text-xs text-gray-500">
-        Press <span className="font-semibold text-cyan-400">Enter</span> to send •{" "}
-        <span className="font-semibold text-cyan-400">
+      <p
+        className="mt-3 text-center text-xs"
+        style={{
+          color: "var(--muted)",
+        }}
+      >
+        Press{" "}
+        <span
+          className="font-semibold"
+          style={{
+            color: "var(--primary)",
+          }}
+        >
+          Enter
+        </span>{" "}
+        to send •{" "}
+        <span
+          className="font-semibold"
+          style={{
+            color: "var(--primary)",
+          }}
+        >
           Shift + Enter
         </span>{" "}
         for a new line.

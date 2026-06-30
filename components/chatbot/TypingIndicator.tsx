@@ -30,22 +30,45 @@ export default function TypingIndicator({
     >
       {/* Avatar */}
 
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg">
-        <Bot
-          size={20}
-          className="text-white"
-        />
+      <div
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white shadow-lg"
+        style={{
+          background:
+            "linear-gradient(135deg,var(--primary),var(--secondary))",
+          boxShadow:
+            "0 8px 24px rgba(var(--primary-rgb),0.35)",
+        }}
+      >
+        <Bot size={20} />
       </div>
 
       {/* Bubble */}
 
-      <div className="rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-xl">
+      <div
+        className="rounded-2xl rounded-bl-md border px-5 py-4 backdrop-blur-xl"
+        style={{
+          borderColor: "var(--border)",
+          background: "var(--card)",
+        }}
+      >
+        {/* Header */}
+
         <div className="mb-3 flex items-center gap-2">
-          <span className="text-sm font-semibold text-cyan-400">
+          <span
+            className="text-sm font-semibold"
+            style={{
+              color: "var(--primary)",
+            }}
+          >
             Himuu AI
           </span>
 
-          <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+          <span
+            className="h-2 w-2 animate-pulse rounded-full"
+            style={{
+              background: "var(--primary)",
+            }}
+          />
         </div>
 
         {/* Typing Animation */}
@@ -64,14 +87,22 @@ export default function TypingIndicator({
                 delay: dot * 0.15,
                 ease: "easeInOut",
               }}
-              className="h-2.5 w-2.5 rounded-full bg-cyan-400"
+              className="h-2.5 w-2.5 rounded-full"
+              style={{
+                background: "var(--primary)",
+              }}
             />
           ))}
         </div>
 
         {/* Status */}
 
-        <p className="mt-3 text-sm text-gray-400">
+        <p
+          className="mt-3 text-sm"
+          style={{
+            color: "var(--muted)",
+          }}
+        >
           {text}
         </p>
       </div>
