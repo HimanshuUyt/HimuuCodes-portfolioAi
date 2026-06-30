@@ -94,7 +94,7 @@ export default function Footer() {
               className="mb-5 text-3xl font-black"
             >
               <span
-                className="bg-clip-text text-transparent"
+                className="gradient-text bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
