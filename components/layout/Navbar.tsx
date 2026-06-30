@@ -93,7 +93,7 @@ export default function Navbar({
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-black tracking-wide cursor-pointer"
           >
-            <span className="bg-clip-text text-transparent" style={{
+            <span className="gradient-text bg-clip-text text-transparent" style={{
               backgroundImage:
                 "linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))",
             }}>
